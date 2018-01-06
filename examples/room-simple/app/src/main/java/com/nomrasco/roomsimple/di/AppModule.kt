@@ -1,5 +1,13 @@
 package com.nomrasco.roomsimple.di
 
-/**
- * Created by nomrasco on 06/01/2018.
- */
+import android.content.Context
+import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
+
+@Module
+class AppModule(val context: Context) {
+    @Provides
+    @Singleton
+    fun provideApplicationContext() = context
+}

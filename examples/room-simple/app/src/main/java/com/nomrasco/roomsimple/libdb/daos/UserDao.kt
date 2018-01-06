@@ -1,7 +1,16 @@
 package com.nomrasco.roomsimple.libdb.daos
 
-/**
- * Created by nomrasco on 06/01/2018.
- */
-interface UserDao {
+import android.arch.lifecycle.LiveData
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Query
+import com.nomrasco.roomsimple.libdb.entities.User
+
+@Dao
+interface UserDao : BaseDao<User>
+{
+    @Query("SELECT * FROM ${User.TABLE_NAME}")
+    fun getAll(): List<User>
+
+    @Query("SELECT * FROM ${User.TABLE_NAME}")
+    fun getAllObservable(): LiveData<List<User>>
 }

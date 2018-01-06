@@ -1,7 +1,12 @@
 package com.nomrasco.roomsimple.di
 
-/**
- * Created by nomrasco on 06/01/2018.
- */
-interface DebugModule {
+import dagger.Module
+import dagger.Provides
+import org.jetbrains.anko.AnkoLogger
+
+@Module
+class DebugModule
+{
+    @Provides
+    fun provideLogger(): AnkoLogger = AnkoLogger("App")
 }
