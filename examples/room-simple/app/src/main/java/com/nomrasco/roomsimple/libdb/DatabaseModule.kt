@@ -11,6 +11,7 @@ import com.nomrasco.roomsimple.libdb.migrations.Migration_2_3
 import dagger.Module
 import dagger.Provides
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.info
 import javax.inject.Singleton
 
@@ -30,6 +31,12 @@ class DatabaseModule {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
                         log.info("Database created!")
+
+                        doAsync {
+                            // we can pre populate DB here!
+
+                            // run Application a notification that data is ready to be used
+                        }
                     }
 
                     override fun onOpen(db: SupportSQLiteDatabase) {

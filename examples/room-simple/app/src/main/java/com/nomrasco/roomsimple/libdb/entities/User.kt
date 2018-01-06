@@ -11,7 +11,7 @@ data class User(
         @field:ColumnInfo(name = COL_FIRST_NAME_NAME) var firstName: String = "",
         @field:ColumnInfo(name = COL_SURNAME_NAME) var surname: String = "",
         @field:ColumnInfo(name = COL_AGE_NAME) var age: Int = 0,
-        @field:ColumnInfo(name = Pet.COL_ADDED_DATE_NAME) var added: DateTime? = DateTime.now() // added in DB version 3
+        @field:ColumnInfo(name = COL_ADDED_DATE_NAME) var added: DateTime? = DateTime.now() // added in DB version 3
 ) {
     companion object {
         const val TABLE_NAME = "users"
