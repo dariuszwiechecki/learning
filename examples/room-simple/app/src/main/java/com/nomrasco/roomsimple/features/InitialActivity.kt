@@ -70,4 +70,13 @@ class InitialActivity : AppCompatActivity(), AnkoLogger {
             }
         })
     }
+
+    @OnClick(R.id.btn_quick_mini_users)
+    fun checkMiniSubsetQuery() {
+        doAsync {
+            userDao.getAllQuickly().forEach {
+                info("Shorten user details: $it")
+            }
+        }
+    }
 }

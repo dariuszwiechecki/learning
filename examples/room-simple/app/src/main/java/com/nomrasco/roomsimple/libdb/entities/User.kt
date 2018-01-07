@@ -21,4 +21,9 @@ data class User(
         const val COL_AGE_NAME = "age"
         const val COL_ADDED_DATE_NAME = "added"
     }
+
+    data class Mini(
+            @field:ColumnInfo(name = COL_FIRST_NAME_NAME) var name: String = "",
+            @field:ColumnInfo(name = COL_SURNAME_NAME) var surname: String = ""
+    )
 }

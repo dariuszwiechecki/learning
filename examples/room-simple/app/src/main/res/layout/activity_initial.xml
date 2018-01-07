@@ -21,7 +21,16 @@
         android:layout_below="@id/btn_simple_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ACtion 2"
+        android:text="Action 2"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <Button
+        android:id="@+id/btn_quick_mini_users"
+        android:layout_below="@id/btn_another_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Action 3"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="114dp" />
 </RelativeLayout>
