@@ -79,4 +79,12 @@ class InitialActivity : AppCompatActivity(), AnkoLogger {
             }
         }
     }
+
+    @OnClick(R.id.btn_get_single_with_pets)
+    fun getSingleUserWithAllPets() {
+        doAsync {
+            val user: User.WithAllPets? = userDao.getUserWithAllPets(2)
+            info("Found user is: $user")
+        }
+    }
 }

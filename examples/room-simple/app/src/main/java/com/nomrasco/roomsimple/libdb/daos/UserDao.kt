@@ -16,4 +16,7 @@ interface UserDao : BaseDao<User>
 
     @Query("SELECT ${User.COL_FIRST_NAME_NAME}, ${User.COL_SURNAME_NAME} FROM ${User.TABLE_NAME}")
     fun getAllQuickly(): List<User.Mini>
+
+    @Query("SELECT * FROM ${User.TABLE_NAME} WHERE id = :id")
+    fun getUserWithAllPets(id: Long): User.WithAllPets?
 }

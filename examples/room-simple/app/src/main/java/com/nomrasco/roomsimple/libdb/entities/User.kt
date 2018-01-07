@@ -1,8 +1,6 @@
 package com.nomrasco.roomsimple.libdb.entities
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.*
 import org.joda.time.DateTime
 
 @Entity(tableName = User.TABLE_NAME)
@@ -26,4 +24,19 @@ data class User(
             @field:ColumnInfo(name = COL_FIRST_NAME_NAME) var name: String = "",
             @field:ColumnInfo(name = COL_SURNAME_NAME) var surname: String = ""
     )
+
+    class WithAllPets {
+        @Embedded
+        var user: User? = null
+
+        @Relation(
+                parentColumn = User.COL_ID_NAME,
+                entityColumn = Pet.COL_OWNER_NAME
+        )
+        var pets: List<Pet> = ArrayList()
+
+        override fun toString(): String {
+            return user.toString() + " pets:" + pets.toString()
+        }
+    }
 }
