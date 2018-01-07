@@ -4,19 +4,22 @@ import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
 import com.nomrasco.roomsimple.libdb.entities.User
+import com.nomrasco.roomsimple.libdb.helpers.getDistinct
 
 @Dao
-interface UserDao : BaseDao<User>
+abstract class UserDao : BaseDao<User>
 {
     @Query("SELECT * FROM ${User.TABLE_NAME}")
-    fun getAll(): List<User>
+    abstract fun getAll(): List<User>
 
     @Query("SELECT * FROM ${User.TABLE_NAME}")
-    fun getAllObservable(): LiveData<List<User>>
+    abstract fun getAllObservable(): LiveData<List<User>>
+
+    fun getAllDistinctObservable() = getAllObservable().getDistinct()
 
     @Query("SELECT ${User.COL_FIRST_NAME_NAME}, ${User.COL_SURNAME_NAME} FROM ${User.TABLE_NAME}")
-    fun getAllQuickly(): List<User.Mini>
+    abstract fun getAllQuickly(): List<User.Mini>
 
     @Query("SELECT * FROM ${User.TABLE_NAME} WHERE id = :id")
-    fun getUserWithAllPets(id: Long): User.WithAllPets?
+    abstract fun getUserWithAllPets(id: Long): User.WithAllPets?
 }

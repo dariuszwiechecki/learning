@@ -61,7 +61,9 @@ class InitialActivity : AppCompatActivity(), AnkoLogger {
 
     @OnClick(R.id.btn_another_test)
     fun anotherAction(view: View) {
-        userDao.getAllObservable().observe(this, Observer<List<User>> { newList ->
+        // userDao.getAllDistinctObservable to filter out no change on the line!
+        // userDao.getAllObservable() to get info about any alter on the data (could be no change!)
+        userDao.getAllDistinctObservable().observe(this, Observer<List<User>> { newList ->
             doAsync {
                 info("Changes found!")
                 newList?.forEach {
@@ -69,6 +71,25 @@ class InitialActivity : AppCompatActivity(), AnkoLogger {
                 }
             }
         })
+    }
+
+    @OnClick(R.id.btn_another_test_touch)
+    fun touchUsers() {
+        info("Touch any user to force signal for LiveData")
+        doAsync {
+            val user = userDao.getAll()[0]
+            userDao.update(user)
+        }
+    }
+
+    @OnClick(R.id.btn_another_test_real_touch)
+    fun realTouchUsers() {
+        info("Really Touch any user to force signal for LiveData")
+        doAsync {
+            val user = userDao.getAll()[0]
+            user.age++
+            userDao.update(user)
+        }
     }
 
     @OnClick(R.id.btn_quick_mini_users)
